@@ -1,0 +1,38 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:MyFirstMauiApp.ViewModels"
+             x:Class="MyFirstMauiApp.Views.AddProductPage"
+             Title="Agregar Producto">
+
+    <ContentPage.BindingContext>
+        <viewmodels:AddProductViewModel />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Padding="30" Spacing="15">
+        <Label Text="Registrar Nuevo Producto" 
+               FontSize="20" 
+               FontAttributes="Bold" 
+               HorizontalOptions="Center" />
+
+        <Entry Placeholder="Nombre del producto" 
+               Text="{Binding Name}" />
+
+        <Entry Placeholder="Descripción (Opcional)" 
+               Text="{Binding Description}" />
+
+        <Entry Placeholder="Precio" 
+               Text="{Binding Price}" 
+               Keyboard="Numeric" />
+
+        <Entry Placeholder="Cantidad en Stock" 
+               Text="{Binding Stock}" 
+               Keyboard="Numeric" />
+
+        <Button Text="Guardar"
+                Command="{Binding SaveCommand}"
+                BackgroundColor="#2196F3"
+                TextColor="White"
+                HeightRequest="50"
+                CornerRadius="10" />
+    </VerticalStackLayout>
+</ContentPage>
