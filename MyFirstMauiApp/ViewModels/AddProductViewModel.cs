@@ -60,10 +60,11 @@ namespace MyFirstMauiApp.ViewModels
             if (success)
             {
                 if (mainPage != null)
+                {
                     await mainPage.DisplayAlert("Éxito", "¡Producto guardado correctamente!", "Continuar");
-
-                // 3. Navegación de regreso a la anterior página
-                await Shell.Current.Navigation.PopAsync();
+                    // 3. Navegación de regreso a la anterior página                
+                    await mainPage.Navigation.PopAsync();
+                }                    
             }
             else
             {

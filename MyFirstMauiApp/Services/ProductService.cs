@@ -18,6 +18,23 @@ namespace MyFirstMauiApp.Services
             _httpClient = new HttpClient(handler);
         }
 
+        // MÉTODO para obtener todos los productos enviando una solicitud GET a la API
+        public async Task<List<Product>> GetAllProductsAsync()
+        {
+            try
+            {
+                // Realiza un GET y convierte automáticamente el JSON en una lista de objetos C#
+                var products = await _httpClient.GetFromJsonAsync<List<Product>>(Url);
+                return products ?? new List<Product>();
+            }
+            catch (Exception ex)
+            {
+                // Imprime el error en consola para debuggear
+                Console.WriteLine($"Error al obtener productos: {ex.Message}");
+                return new List<Product>();
+            }
+        }
+
         // Método para crear un nuevo producto enviando una solicitud POST a la API
         public async Task<bool> CreateProductAsync(Product product)
         {
