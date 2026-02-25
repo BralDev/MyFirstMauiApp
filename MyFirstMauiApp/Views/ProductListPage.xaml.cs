@@ -28,4 +28,20 @@ public partial class ProductListPage : ContentPage
             await viewModel.LoadProducts();
         }
     }
+
+    private async void OnProductSelected(object sender, SelectionChangedEventArgs e)
+    {
+        // 1. Identificamos el registro seleccionado
+        var selectedProduct = e.CurrentSelection.FirstOrDefault() as MyFirstMauiApp.Models.Product;
+
+        if (selectedProduct != null)
+        {
+            // 2. Navegamos pasando el producto al constructor
+            // Nota: Crearemos este constructor en el siguiente paso
+            await Navigation.PushAsync(new AddProductPage(selectedProduct));
+
+            // 3. Limpiamos la selección para que pueda volver a tocarlo después
+            ((CollectionView)sender).SelectedItem = null;
+        }
+    }
 }

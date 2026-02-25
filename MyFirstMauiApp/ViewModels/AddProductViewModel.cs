@@ -22,6 +22,24 @@ namespace MyFirstMauiApp.ViewModels
         private int _stock;
         public int Stock { get => _stock; set { _stock = value; OnPropertyChanged(); } }
 
+        
+        private int _id = 0;
+        // Propiedad para almacenar el ID del producto (0 si es nuevo, >0 si es edición)
+        public int Id
+        {
+            get => _id;
+            set { _id = value; OnPropertyChanged(); }
+        }
+        
+        private string _title = "Nuevo Producto";
+        // Propiedad para cambiar el título de la página dinámicamente
+        public string Title
+        {
+            get => _title;
+            set { _title = value; OnPropertyChanged(); }
+        }
+
+
         // Comando para guardar el producto, se vincula a un botón en la vista
         public ICommand SaveCommand { get; }
 
@@ -48,13 +66,19 @@ namespace MyFirstMauiApp.ViewModels
 
             var product = new Product
             {
+                Id = Id,
                 Name = Name!,
                 Description = Description,
                 Price = Price,
                 Stock = Stock
             };
 
-            bool success = await _productService.CreateProductAsync(product);
+            bool success;
+            
+            if (Id == 0)
+                success = await _productService.CreateProductAsync(product);
+            else
+                success = await _productService.UpdateProductAsync(product);
 
             // 2. Respuesta del servidor
             if (success)

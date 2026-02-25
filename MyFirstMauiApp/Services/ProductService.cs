@@ -51,5 +51,21 @@ namespace MyFirstMauiApp.Services
                 return false;
             }
         }
+
+        public async Task<bool> UpdateProductAsync(Product product)
+        {
+            try
+            {
+                // Enviar una solicitud PUT a la API para actualizar el producto
+                var response = await _httpClient.PutAsJsonAsync($"{Url}/{product.Id}", product);
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                // Imprime el error en consola para debuggear
+                Console.WriteLine($"Error: {ex.Message}");
+                return false;
+            }
+        }
     }
 }

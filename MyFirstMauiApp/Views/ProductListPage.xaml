@@ -12,7 +12,9 @@
     <Grid RowDefinitions="*, Auto">
         <RefreshView IsRefreshing="{Binding IsRefreshing}"
                      Command="{Binding LoadProductsCommand}">
-            <CollectionView ItemsSource="{Binding Products}">
+            <CollectionView ItemsSource="{Binding Products}"
+                SelectionMode="Single"
+                SelectionChanged="OnProductSelected">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:Product">
                         <Frame Margin="10,5" Padding="15" CornerRadius="10" HasShadow="True">
