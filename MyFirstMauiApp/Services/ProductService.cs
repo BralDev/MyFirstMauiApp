@@ -1,4 +1,5 @@
-﻿using System.Net.Http.Json; // Importado para usar PostAsJsonAsync
+﻿using System.Diagnostics;
+using System.Net.Http.Json; // Importado para usar PostAsJsonAsync
 using MyFirstMauiApp.Models;
 
 namespace MyFirstMauiApp.Services
@@ -57,7 +58,7 @@ namespace MyFirstMauiApp.Services
             try
             {
                 // Enviar una solicitud PUT a la API para actualizar el producto
-                var response = await _httpClient.PutAsJsonAsync($"{Url}/{product.Id}", product);
+                var response = await _httpClient.PutAsJsonAsync(Url, product);
                 return response.IsSuccessStatusCode;
             }
             catch (Exception ex)
