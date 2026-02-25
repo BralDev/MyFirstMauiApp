@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Net.Http.Json; // Importado para usar PostAsJsonAsync
+﻿using System.Net.Http.Json; // Importado para usar PostAsJsonAsync
 using MyFirstMauiApp.Models;
 
 namespace MyFirstMauiApp.Services
